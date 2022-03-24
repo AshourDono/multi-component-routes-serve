@@ -80,9 +80,6 @@ export default {
   },
   emits: ['add-student'],
   props: {
-    stData: {
-      type: Array,
-    },
     studentInfo: {
       type: Object,
     },

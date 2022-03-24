@@ -1,7 +1,7 @@
 <template>
   <NavbarComponent />
-  <ButtonComponent @add-student="addStudent" :stData="stData" :studentInfo="studentInfo" />
-  <TableComponent :stData="stData" :studentInfo="studentInfo" />
+  <ButtonComponent @add-student="addStudent" :studentInfo="studentInfo" />
+  <TableComponent @remove-student="removeStudent" :stData="stData" />
   <FooterComponent />
 </template>
 
@@ -44,8 +44,12 @@ export default {
       this.studentInfo.age = '';
       this.studentInfo.city = '';
     },
+    removeStudent(student) {
+      let removed = this.stData.indexOf(student);
+      this.stData.splice(removed, 1);
+    },
   },
-  emits: ['add-student'],
+  emits: ['add-student', 'remove-student'],
 };
 </script>
 

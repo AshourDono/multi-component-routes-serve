@@ -15,6 +15,7 @@
             <th scope="col">Name</th>
             <th scope="col">Age</th>
             <th scope="col">City</th>
+            <th scope="col">Action</th>
           </tr>
         </thead>
         <tbody>
@@ -23,6 +24,10 @@
             <td>{{ datum.name }}</td>
             <td>{{ datum.age }}</td>
             <td>{{ datum.city }}</td>
+            <td>
+              <i class="fa-solid fa-trash-can fa-xl" @click="removeStudent"></i> |
+              <i class="fa-solid fa-pen-to-square fa-xl" @click="editStudent"></i>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -34,15 +39,28 @@ export default {
   data() {
     return {};
   },
-  methods: {},
+  methods: {
+    removeStudent(student) {
+      this.$emit('remove-student', student);
+    },
+    editStudent(student) {},
+  },
   props: {
     stData: {
       type: Array,
     },
-    studentInfo: {
-      type: Object,
-    },
   },
+  emits: ['remove-student'],
 };
 </script>
-<style scoped></style>
+<style scoped>
+.fa-trash-can {
+  color: red;
+}
+.fa-pen-to-square {
+  color: green;
+}
+.fa-solid {
+  cursor: pointer;
+}
+</style>
