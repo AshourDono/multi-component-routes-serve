@@ -1,0 +1,12 @@
+{
+  "students": [
+    {
+      "isTrusted": true,
+      "id": 1
+    },
+    {
+      "isTrusted": true,
+      "id": 2
+    }
+  ]
+}

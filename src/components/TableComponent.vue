@@ -19,18 +19,83 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="datum in stData" :key="datum.id">
-            <th scope="row">{{ datum.id }}</th>
-            <td>{{ datum.name }}</td>
-            <td>{{ datum.age }}</td>
-            <td>{{ datum.city }}</td>
+          <tr v-for="student in stData || []" :key="student.id">
+            <th scope="row">{{ student.id }}</th>
+            <td>{{ student.name }}</td>
+            <td>{{ student.age }}</td>
+            <td>{{ student.city }}</td>
             <td>
               <i class="fa-solid fa-trash-can fa-xl" @click="removeStudent"></i> |
-              <i class="fa-solid fa-pen-to-square fa-xl" @click="editStudent"></i>
+              <i
+                class="fa-solid fa-pen-to-square fa-xl"
+                data-bs-toggle="modal"
+                data-bs-target="#editModal"
+              ></i>
             </td>
           </tr>
         </tbody>
       </table>
+      <div
+        class="modal fade"
+        id="editModal"
+        tabindex="-1"
+        aria-labelledby="editModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="editModalLabel">Update student</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <form @submit.prevent="editStudent">
+                <div class="mb-3">
+                  <label for="name" class="form-label">Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="name"
+                    v-model="studentInfo.name"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="age" class="form-label">Age</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="age"
+                    v-model.number="studentInfo.age"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="city" class="form-label">City</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="city"
+                    v-model="studentInfo.city"
+                    required
+                  />
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    Close
+                  </button>
+                  <button type="submit" class="btn btn-warning">Edit Student</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -43,11 +108,16 @@ export default {
     removeStudent(student) {
       this.$emit('remove-student', student);
     },
-    editStudent(student) {},
+    editStudent(student) {
+      console.log(student);
+    },
   },
   props: {
     stData: {
       type: Array,
+    },
+    studentInfo: {
+      type: Object,
     },
   },
   emits: ['remove-student'],

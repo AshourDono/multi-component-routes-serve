@@ -74,8 +74,9 @@ export default {
     return {};
   },
   methods: {
-    addStudent() {
-      this.$emit('add-student');
+    addStudent(student) {
+      console.log(student);
+      this.$emit('add-student', student);
     },
   },
   emits: ['add-student'],
