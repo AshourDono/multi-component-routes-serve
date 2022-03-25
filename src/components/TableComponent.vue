@@ -55,7 +55,7 @@
               ></button>
             </div>
             <div class="modal-body">
-              <form @submit.prevent="editStudent">
+              <form @submit.prevent="editStudent(updateInfo)">
                 <div class="mb-3">
                   <label for="name" class="form-label">Name</label>
                   <input
@@ -90,7 +90,9 @@
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                     Close
                   </button>
-                  <button type="submit" class="btn btn-warning">Edit Student</button>
+                  <button type="submit" class="btn btn-warning" data-bs-dismiss="modal">
+                    Edit Student
+                  </button>
                 </div>
               </form>
             </div>
@@ -105,6 +107,7 @@ export default {
   data() {
     return {
       updateInfo: {
+        id: '',
         name: '',
         age: '',
         city: '',
@@ -113,6 +116,7 @@ export default {
   },
   methods: {
     displayEditedData(student) {
+      this.updateInfo.id = student.id;
       this.updateInfo.name = student.name;
       this.updateInfo.age = student.age;
       this.updateInfo.city = student.city;
@@ -121,22 +125,17 @@ export default {
       this.$emit('remove-student', id);
     },
     async editStudent(student) {
-      let updated = {
-        name: this.updateInfo.name,
-        age: this.updateInfo.age,
-        city: this.updateInfo.city,
-      };
       await fetch(`http://localhost:5000/students/${student.id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(updated),
+        body: JSON.stringify(student),
       });
-      let found = this.stData.find(std => std.name === updated.name);
-      found.name = updated.name;
-      found.age = updated.age;
-      found.city = updated.city;
+      let found = this.stData.find(std => std.id === student.id);
+      found.name = student.name;
+      found.age = student.age;
+      found.city = student.city;
     },
   },
   props: {

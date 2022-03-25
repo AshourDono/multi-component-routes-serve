@@ -1,11 +1,7 @@
 <template>
   <NavbarComponent />
   <ButtonComponent @add-student="addStudent" :studentInfo="studentInfo" />
-  <TableComponent
-    @remove-student="removeStudent"
-    :stData="stData"
-    :studentInfo="studentInfo"
-  />
+  <TableComponent @remove-student="removeStudent" :stData="stData" :studentInfo="studentInfo" />
   <FooterComponent />
 </template>
 
@@ -35,6 +31,7 @@ export default {
   },
   async created() {
     const response = await fetch('http://localhost:5000/students');
+    console.log(response);
     this.stData = await response.json();
   },
   methods: {
@@ -44,7 +41,6 @@ export default {
       this.studentInfo.city = '';
     },
     async addStudent(student) {
-      // this.clearStudentFields();
       await fetch('http://localhost:5000/students', {
         method: 'POST',
         headers: {
@@ -52,9 +48,9 @@ export default {
         },
         body: JSON.stringify(student),
       });
-      console.log('before:', this.stData, student);
+      console.log('before:', student);
       this.stData.push(student);
-      console.log('after:', this.stData, student);
+      console.log('after:', student);
       this.clearStudentFields();
     },
     async removeStudent(id) {

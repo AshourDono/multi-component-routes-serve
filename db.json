@@ -1,40 +1,22 @@
 {
   "students": [
     {
-      "name": "Ahmed",
-      "age": 15,
-      "city": "fghjkh",
-      "id": 1
+      "id": 3,
+      "name": "xsdsd",
+      "age": "ali",
+      "city": "ali"
     },
     {
-      "name": "Ahmed",
-      "age": 15,
-      "city": "hjkhkjhjk",
-      "id": 2
-    },
-    {
-      "name": "يلبلبيل",
-      "age": "بليبليبل",
-      "city": "يلبيبيبي",
-      "id": 3
-    },
-    {
-      "name": "ghfhfghfh",
-      "age": "hfghfghfghf",
-      "city": "56+5+65+6",
+      "name": "ghgjhg",
+      "age": "gjhgjhgj",
+      "city": "hjhjh",
       "id": 4
     },
     {
-      "name": "fsdfsdf",
-      "age": "fsdfsdf",
-      "city": "fsdfsdfsdfsdfsfsdfsdffsf",
+      "name": "hfkjdsg",
+      "age": "gfdfg",
+      "city": "fgdgdfg",
       "id": 5
-    },
-    {
-      "name": "fdgfdg",
-      "age": "dfgdfgdf",
-      "city": "gdfgdfg",
-      "id": 6
     }
   ]
 }

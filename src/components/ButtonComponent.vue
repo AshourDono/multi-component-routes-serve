@@ -26,7 +26,7 @@
           ></button>
         </div>
         <div class="modal-body">
-          <form @submit.prevent="addStudent">
+          <form @submit.prevent="addStudent(studentInfo)">
             <div class="mb-3">
               <label for="name" class="form-label">Name</label>
               <input
