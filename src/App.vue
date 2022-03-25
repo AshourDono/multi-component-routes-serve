@@ -1,7 +1,11 @@
 <template>
   <NavbarComponent />
   <ButtonComponent @add-student="addStudent" :studentInfo="studentInfo" />
-  <TableComponent @remove-student="removeStudent" :stData="stData" :studentInfo="studentInfo" />
+  <TableComponent
+    @remove-student="removeStudent"
+    :stData="stData"
+    :studentInfo="studentInfo"
+  />
   <FooterComponent />
 </template>
 
@@ -34,7 +38,13 @@ export default {
     this.stData = await response.json();
   },
   methods: {
+    clearStudentFields() {
+      this.studentInfo.name = '';
+      this.studentInfo.age = '';
+      this.studentInfo.city = '';
+    },
     async addStudent(student) {
+      // this.clearStudentFields();
       await fetch('http://localhost:5000/students', {
         method: 'POST',
         headers: {
@@ -42,14 +52,16 @@ export default {
         },
         body: JSON.stringify(student),
       });
-      // this.stData.push(student);
-
-      // this.studentInfo.name = '';
-      // this.studentInfo.age = '';
-      // this.studentInfo.city = '';
+      console.log('before:', this.stData, student);
+      this.stData.push(student);
+      console.log('after:', this.stData, student);
+      this.clearStudentFields();
     },
-    removeStudent(student) {
-      let removed = this.stData.indexOf(student);
+    async removeStudent(id) {
+      await fetch(`http://localhost:5000/students/${id}`, {
+        method: 'DELETE',
+      });
+      let removed = this.stData.indexOf(id);
       this.stData.splice(removed, 1);
     },
   },

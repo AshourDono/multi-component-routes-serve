@@ -60,7 +60,9 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary">Add Student</button>
+              <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">
+                Add Student
+              </button>
             </div>
           </form>
         </div>
@@ -74,9 +76,8 @@ export default {
     return {};
   },
   methods: {
-    addStudent(student) {
-      console.log(student);
-      this.$emit('add-student', student);
+    addStudent() {
+      this.$emit('add-student', this.studentInfo);
     },
   },
   emits: ['add-student'],
