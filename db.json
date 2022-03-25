@@ -1,22 +1,3 @@
 {
-  "students": [
-    {
-      "id": 3,
-      "name": "xsdsd",
-      "age": "ali",
-      "city": "ali"
-    },
-    {
-      "name": "ghgjhg",
-      "age": "gjhgjhgj",
-      "city": "hjhjh",
-      "id": 4
-    },
-    {
-      "name": "hfkjdsg",
-      "age": "gfdfg",
-      "city": "fgdgdfg",
-      "id": 5
-    }
-  ]
+  "students": []
 }
