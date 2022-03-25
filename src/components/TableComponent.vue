@@ -21,7 +21,9 @@
         <tbody>
           <tr v-for="student in stData" :key="student.id">
             <th scope="row">{{ student.id }}</th>
-            <td>{{ student.name }}</td>
+            <td>
+              <router-link :to="'/students/'+student.id"> {{ student.name }}</router-link>
+            </td>
             <td>{{ student.age }}</td>
             <td>{{ student.city }}</td>
             <td>
@@ -125,6 +127,7 @@ export default {
       this.$emit('remove-student', id);
     },
     async editStudent(student) {
+      //1- fetch data from server
       await fetch(`http://localhost:5000/students/${student.id}`, {
         method: 'PUT',
         headers: {
@@ -132,6 +135,7 @@ export default {
         },
         body: JSON.stringify(student),
       });
+      //2- update specific user data
       let found = this.stData.find(std => std.id === student.id);
       found.name = student.name;
       found.age = student.age;

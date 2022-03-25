@@ -1,4 +1,6 @@
-import { createApp } from 'vue'
-import App from './App.vue'
+import { createApp } from 'vue';
+import App from './App.vue';
+import router from './../routers/router';
+import LandingPageComponent from './components/LandingPageComponent.vue';
 
-createApp(App).mount('#app')
+createApp(LandingPageComponent).use(router).mount('#app');

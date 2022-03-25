@@ -30,8 +30,8 @@ export default {
     ButtonComponent,
   },
   async created() {
+    //fetch api
     const response = await fetch('http://localhost:5000/students');
-    console.log(response);
     this.stData = await response.json();
   },
   methods: {
@@ -41,6 +41,7 @@ export default {
       this.studentInfo.city = '';
     },
     async addStudent(student) {
+      //1- fetch data from server
       await fetch('http://localhost:5000/students', {
         method: 'POST',
         headers: {
@@ -48,12 +49,12 @@ export default {
         },
         body: JSON.stringify(student),
       });
-      console.log('before:', student);
+      //2-update UI
       this.stData.push(student);
-      console.log('after:', student);
       this.clearStudentFields();
     },
     async removeStudent(id) {
+      //1- fetch specific user data from server
       await fetch(`http://localhost:5000/students/${id}`, {
         method: 'DELETE',
       });
